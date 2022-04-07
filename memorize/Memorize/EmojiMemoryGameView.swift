@@ -4,17 +4,41 @@ import SwiftUI
 
 struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
+//    @State var flips = 0
+    @State var emojiCount = 6
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
                     withAnimation(.easeInOut) {
-                        self.viewModel.resetGame()
+                        self.viewModel.resetGame(emojiCount: emojiCount)
                     }
                 }, label: { Text("New Game") })
-                Text("Flips: 0")
+                
+                Button {
+                    emojiCount = max(1, emojiCount - 1)
+                    
+                    withAnimation(.easeInOut) {
+                      self.viewModel.resetGame(emojiCount: emojiCount)
+                    }
+                } label: {
+                    Image(systemName: "minus.square")
+                }
+                
+                Button {
+                    emojiCount = min(16, emojiCount + 1)
+                    
+                    withAnimation(.easeInOut) {
+                      self.viewModel.resetGame(emojiCount: emojiCount)
+                    }
+                } label: {
+                    Image(systemName: "plus.square")
+                }
+                
+                Text("Difficulty: \(emojiCount)")
             }.padding(.top)
+            
             Grid(viewModel.cards) { card in
                 CardView(card: card).onTapGesture {
                     withAnimation(.linear(duration: 0.5)) {
