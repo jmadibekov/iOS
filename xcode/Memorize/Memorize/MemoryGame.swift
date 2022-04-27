@@ -4,30 +4,43 @@
 //
 //  Created by Nurbakyt on 19.04.2022.
 //
-//  This is the Model!
+//  This is the Model! It is UI independent.
+//  Model is the single source of truth. 
 
 import Foundation
 
 // here 'CardContent' is a "don't care" type, aka the "generic" type
-struct MemoryGame<CardContent> {
+// our "don't care" type 'CardContent' has to behave like Equatable
+// (so we do actually care about it a little bit)
+struct MemoryGame<CardContent> where CardContent: Equatable {
     private(set) var cards: Array<Card>
+    
+    private var indexOfTheOneAndOnlyFaceUpCard: Int? // equals = .none automatically
     
     mutating func choose(_ card: Card) {
         print("You tapped the", card)
         
-        let chosenIndex = index(of: card)
-//        var chosenCard = cards[chosenIndex] // this makes a copy of the struct
-        cards[chosenIndex].isFaceUp.toggle()
-        print("chosenIndex", chosenIndex)
-    }
-    
-    func index(of card: Card) -> Int {
-        for index in 0..<cards.count {
-            if cards[index].id == card.id {
-                return index
+        if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
+            !cards[chosenIndex].isFaceUp,
+            !cards[chosenIndex].isMatched
+        {
+//            var chosenCard = cards[chosenIndex] // this makes a copy of the struct
+            
+            if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
+                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
+                    cards[chosenIndex].isMatched = true
+                    cards[potentialMatchIndex].isMatched = true
+                }
+                indexOfTheOneAndOnlyFaceUpCard = nil
+            } else {
+                for index in cards.indices {
+                    cards[index].isFaceUp = false
+                }
+                indexOfTheOneAndOnlyFaceUpCard = chosenIndex
             }
+            
+            cards[chosenIndex].isFaceUp.toggle()
         }
-        return 0 // bogus!
     }
     
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
@@ -46,7 +59,7 @@ struct MemoryGame<CardContent> {
     // (this is the same as how 'ContentView' behaves like a 'View')
     // so that we can 'ForEach' it
     struct Card: Identifiable {
-        var isFaceUp: Bool = true
+        var isFaceUp: Bool = false
         var isMatched: Bool = false
         var content: CardContent
 
