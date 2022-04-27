@@ -12,8 +12,22 @@ import Foundation
 struct MemoryGame<CardContent> {
     private(set) var cards: Array<Card>
     
-    func choose(_ card: Card) {
+    mutating func choose(_ card: Card) {
+        print("You tapped the", card)
         
+        let chosenIndex = index(of: card)
+//        var chosenCard = cards[chosenIndex] // this makes a copy of the struct
+        cards[chosenIndex].isFaceUp.toggle()
+        print("chosenIndex", chosenIndex)
+    }
+    
+    func index(of card: Card) -> Int {
+        for index in 0..<cards.count {
+            if cards[index].id == card.id {
+                return index
+            }
+        }
+        return 0 // bogus!
     }
     
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {
