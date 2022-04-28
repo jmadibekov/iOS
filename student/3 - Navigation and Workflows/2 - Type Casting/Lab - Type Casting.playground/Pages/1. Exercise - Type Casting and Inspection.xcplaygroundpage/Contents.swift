@@ -3,14 +3,19 @@
 
  Create a collection of type [Any], including a few doubles, integers, strings, and booleans within the collection. Print the contents of the collection.
  */
- 
-
+var arr: [Any] = [10.0, "hello", 4, true]
+print(arr)
 //:  Loop through the collection. For each integer, print "The integer has a value of ", followed by the integer value. Repeat the steps for doubles, strings and booleans.
- 
-
+for val in arr {
+    if let intVal = val as? Int {
+        print("The integer has a value of", intVal)
+    }
+}
 //:  Create a [String : Any] dictionary, where the values are a mixture of doubles, integers, strings, and booleans. Print the key/value pairs within the collection
- 
-
+var dict: [String: Any] = ["A": 10.0, "B": "hello", "C": 4, "D": true]
+for (i, v) in dict {
+    print(i, v)
+}
 //:  Create a variable `total` of type `Double` set to 0. Then loop through the dictionary, and add the value of each integer and double to your variable's value. For each string value, add 1 to the total. For each boolean, add 2 to the total if the boolean is `true`, or subtract 3 if it's `false`. Print the value of `total`.
  
 
