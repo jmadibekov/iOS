@@ -15,33 +15,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JU-nZ-2nf">
-                                <rect key="frame" x="161.66666666666666" y="406.66666666666669" width="67" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQh-fi-R97">
+                                <rect key="frame" x="224" y="319" width="150" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Push to Green"/>
                                 <connections>
-                                    <segue destination="Oeh-gb-Iwq" kind="show" id="vqU-Fj-LAq"/>
+                                    <action selector="greenButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pq1-0u-B1B"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="laV-Ly-NmZ">
-                                <rect key="frame" x="147" y="342" width="97" height="34"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Don-qL-s9G">
+                                <rect key="frame" x="171" y="405" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7x-bl-xod">
+                                <rect key="frame" x="16" y="319" width="149" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Push to Yellow"/>
+                                <connections>
+                                    <action selector="yellowButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QRC-Bd-I4f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="1" green="0.66640431759417162" blue="0.54486543221120942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="5JU-nZ-2nf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2P1-79-DBW"/>
-                            <constraint firstItem="5JU-nZ-2nf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wzo-5R-yPc"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Red" id="Msq-pu-Iyo">
                         <barButtonItem key="backBarButtonItem" title="Go To Red" id="Mji-Af-5hP"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="textField" destination="laV-Ly-NmZ" id="p7c-fx-CN1"/>
+                        <outlet property="segueSwitch" destination="Don-qL-s9G" id="mbi-L9-QH0"/>
+                        <segue destination="Oeh-gb-Iwq" kind="show" identifier="Yellow" id="Jeo-Lo-3TX"/>
+                        <segue destination="Nj3-cj-HWF" kind="show" identifier="Green" id="WQY-RK-amq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -55,28 +61,14 @@
                     <view key="view" contentMode="scaleToFill" id="9SO-Yw-BJ3">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAo-zB-W3v">
-                                <rect key="frame" x="161.66666666666666" y="406.66666666666669" width="67" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <segue destination="Nj3-cj-HWF" kind="show" id="SyR-DE-aFl"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="pc3-xd-9PR"/>
                         <color key="backgroundColor" red="1" green="0.87396925355352417" blue="0.379392785389843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="KAo-zB-W3v" firstAttribute="centerX" secondItem="9SO-Yw-BJ3" secondAttribute="centerX" id="Idb-gZ-ebf"/>
-                            <constraint firstItem="KAo-zB-W3v" firstAttribute="centerY" secondItem="9SO-Yw-BJ3" secondAttribute="centerY" id="e8r-pY-Vf7"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Yellow" id="fSZ-JF-LIC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgY-rG-nLz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1729.2307692307693" y="115.87677725118483"/>
+            <point key="canvasLocation" x="1862" y="-240"/>
         </scene>
         <!--Green-->
         <scene sceneID="Xro-H2-wdr">
@@ -89,17 +81,12 @@
                         <color key="backgroundColor" red="0.51558708410754883" green="0.7803921568627451" blue="0.44728893821278565" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Green" id="c6Z-o1-PHX">
-                        <barButtonItem key="rightBarButtonItem" title="Pop" id="5N3-cW-FF3">
-                            <connections>
-                                <segue destination="ZMG-5E-eeE" kind="unwind" unwindAction="unwindToRedWithUnwindSegue:" id="H2E-Ct-2Av"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Pop" id="5N3-cW-FF3"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KQg-US-Rid" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="ZMG-5E-eeE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2546.1538461538462" y="115.87677725118483"/>
+            <point key="canvasLocation" x="1862" y="486"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V13-81-4FX">
